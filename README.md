@@ -6,9 +6,13 @@ We want to implement a virtual shopping system, whether the threads are either c
 
 # Assumptions
 • In a realistic example, communications happen between processes via UDP messages. In this module, we don’t require that. We can freely assume that each client (Physical person buying items in the show using the mobile app, OnLine Shopper) is mimicked by one single thread. We assume they directly exploit such an interface (no FrontEnd is required!)
+
 • If the RainforestShop is implemented as a server, such a thread might receive the “client messages” through shared variables.
+
 • The RainforestShop already comes with a Transaction class keeping track of the transactions that are performed for handling basketing operations. You are not required to tolerate the server crash (this is more of a backup task rather than a concurrent programming one), but you must correctly handle client logouts (withdrawn items from the shelves after log-out should be automatically re-shelved with a cookie-free assumption, where the basket is not “remembered” after re-logging in)!
-• We assume that the RainforestShop class is initialized with the users allowed to shop using the mobile app or online website (Collection<String> client_ids), the association between the name of the product (String), its cost (Double) and a non-zero Integer number of available items to purchase (Map<String, Pair<Double, Integer» available_products). The students are encouraged to change the studentId to return their student ID, as well as setting isGlobalLock to true if the students use a pessimistic protocol, and false otherwise. The system should not allow to register/unroll new users/shoppers.
+
+• We assume that the RainforestShop class is initialized with the users allowed to shop using the mobile app or online website (Collection<String> client_ids), the association between the name of the product (String), its cost (Double) and a non-zero Integer number of available items to purchase (Map<String, Pair<Double, Integer» available_products). The system should not allow to register/unroll new users/shoppers.
+
 • The server should allow a single user contemporarily log in with the same username as far as different transaction IDs are given to distinguish different concurrent operations. In order
 to maximise seriality and concurrency requirements, the students might investigate optimistic protocols for transactions, but this is not strictly required.
 
